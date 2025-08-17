@@ -1,0 +1,40 @@
+# Python virtual environments
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django stuff
+*.sqlite3
+*.log
+*.pot
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist/
+build/
+media/
+staticfiles/
+
+# Node / React
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.env
+.env.local
+.env.development
+.env.production
+/build
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
