@@ -1,0 +1,81 @@
+
+
+.register-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    min-height: 100vh; /* full viewport height */
+    background-color: #4A90E2; /* only applies to this page */
+    font-family: Arial, sans-serif;
+}
+
+.register-title {
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+.register-options {
+    display: flex;
+    gap: 40px;
+    /* space between boxes */
+    flex-wrap: wrap;
+    /* make it responsive on small screens */
+}
+
+.register-box {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.register-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #4A90E2;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.register-link:hover {
+    background-color: #357ABD;
+}
+
+.register-login-option {
+    color: #ffffff;
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+}
+
+.register-login-link {
+    display: inline-block;
+    margin-top: 0px;
+    padding: 5px 15px;
+    background-color: #ffffff;
+    color: #4A90E2;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+.register-login-link:hover {
+    background-color: #c3c7cb;
+}

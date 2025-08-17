@@ -1,0 +1,18 @@
+.greetings-container {
+    margin: 20px auto; 
+    padding: 0 20px;   
+    text-align: start; 
+    font-family: Arial, sans-serif;
+    color: #000000;        
+}
+
+.greetings-container h1 {
+    font-size: 2rem;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.greetings-container p {
+    font-size: 1.1rem;
+    color: #333;
+}

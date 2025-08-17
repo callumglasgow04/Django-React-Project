@@ -1,39 +1,46 @@
-# Python virtual environments
+# --- Python / Django ---
 env/
 venv/
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
-
-# Django stuff
-*.sqlite3
-*.log
-*.pot
-*.py[cod]
 *.so
 *.egg
 *.egg-info
 dist/
 build/
+*.log
+*.pot
+*.mo
+
+# SQLite (if using it)
+db.sqlite3
+
+# Django static & media
 media/
 staticfiles/
+frontend/build/  # built frontend assets
 
-# Node / React
+# --- Node / React ---
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-yarn.lock
+pnpm-debug.log*
+package-lock.json.*  # backup lockfiles
+.yarn-integrity
+
+# --- Environment / Secrets ---
 .env
-.env.local
-.env.development
-.env.production
-frontend/build/
+.env.*
+!.env.example  # allow sharing a sample env file
 
-# VS Code settings
+# --- IDE / Editor ---
 .vscode/
+.idea/
+*.swp
 
-# OS files
+# --- OS Specific ---
 .DS_Store
 Thumbs.db

@@ -1,10 +1,14 @@
-from django.shortcuts import render
-from django.contrib.auth.models import User
 from rest_framework import generics
-from .serializers import UserSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny
+from .models import User
+from .serializers import StudentSerializer, TeacherSerializer
 
-class CreateUserView(generics.CreateAPIView):
+class CreateStudentView(generics.CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = StudentSerializer
+    permission_classes = [AllowAny]
+
+class CreateTeacherView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = TeacherSerializer
     permission_classes = [AllowAny]

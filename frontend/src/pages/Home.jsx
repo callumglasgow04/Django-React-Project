@@ -1,14 +1,12 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
+import Greetings from '../components/Greetings/Greetings';
 
 function Home() {
     const navigate = useNavigate()
 
     return (
-        <div>
-            <h1>Welcome to the Home Page</h1>
-            <button onClick={() => navigate('/logout')}>logout</button>
-        </div>
+        <Greetings />
     )
 }
 export default Home
