@@ -8,7 +8,6 @@ const StudentForm = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [dob, setDob] = useState("");
-    const role = "student";
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -24,7 +23,6 @@ const StudentForm = () => {
                 first_name: firstName,
                 last_name: lastName,
                 dob,
-                role
             });
             navigate('/login');
         } catch (error) {

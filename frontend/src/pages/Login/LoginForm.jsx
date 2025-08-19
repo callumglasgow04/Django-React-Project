@@ -22,6 +22,7 @@ const LoginForm = () => {
             });
             localStorage.setItem(ACCESS_TOKEN, response.data.access)
             localStorage.setItem(REFRESH_TOKEN, response.data.refresh)
+
             navigate("/");
         } catch (error) {
             alert(error);

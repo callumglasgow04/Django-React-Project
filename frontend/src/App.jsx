@@ -1,13 +1,15 @@
 import React from "react"
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
-import Home from "./pages/Home"
-import Login from "./pages/Login"
-import RegisterLandingPage from "./pages/RegisterLandingPage"
+import Home from "./pages/Home/Home"
+import Login from "./pages/Login/Login"
+import RegisterLandingPage from "./pages/RegisterLandingPage/RegisterLandingPage"
 import RegisterStudent from "./pages/register/Student/RegisterStudent"
 import RegisterTeacher from "./pages/register/RegisterTeacher"
-import NotFound from "./pages/NotFound"
+import NotFound from "./pages/NotFound/NotFound"
 import ProtectedRoute from "./components/protectedRoutes"
 import ProtectedLayout from "./components/navbar/ProtectedLayout"
+import StudentDashboard from "./pages/StudentDashboard/StudentDashboard"
+import RoleProtectedRoutes from "./components/RoleProtectedRoutes"
 
 function Logout() {
   localStorage.clear()
@@ -41,6 +43,11 @@ function App() {
 
         <Route element={<ProtectedRoute><ProtectedLayout /></ProtectedRoute>}>
           <Route path="/" element={<Home />} />
+
+          <Route element={<RoleProtectedRoutes allowedRoles={['student']} />}>
+            <Route path="/student/dashboard" element={<StudentDashboard />} />
+          </Route>
+
         </Route>
       </Routes>
     </BrowserRouter>
