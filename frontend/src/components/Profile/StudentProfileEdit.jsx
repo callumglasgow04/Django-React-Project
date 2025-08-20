@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import ProfileInput from "./ProfileInput";
+import MyInputField from "../Core/MyInputField";
 
 const StudentProfileEdit = ({ student, formData, setFormData }) => {
 
@@ -33,11 +34,7 @@ const StudentProfileEdit = ({ student, formData, setFormData }) => {
                         <Typography variant="body1">{student?.user?.first_name || "-"}</Typography>
                     </Grid>
                     <Grid item xs={8}>
-                        <ProfileInput
-                            placeHolder={"Edit First Name"}
-                            value={formData.first_name || ''}
-                            onChange={handInputChange("first_name")}
-                        />
+                        <MyInputField value={formData.first_name || ''} onChange={handInputChange("first_name")} />
                     </Grid>
                 </Grid>
             </Box>
@@ -48,11 +45,8 @@ const StudentProfileEdit = ({ student, formData, setFormData }) => {
                         <Typography variant="body1">{student?.user?.last_name || "-"}</Typography>
                     </Grid>
                     <Grid item xs={8}>
-                        <ProfileInput
-                            placeHolder={"Edit Last Name"}
-                            value={formData.last_name || ''}
-                            onChange={handInputChange("last_name")}
-                        />
+                        <MyInputField value={formData.last_name || ''} onChange={handInputChange("last_name")} />
+
                     </Grid>
                 </Grid>
             </Box>
@@ -61,6 +55,9 @@ const StudentProfileEdit = ({ student, formData, setFormData }) => {
                 <Grid container spacing={2} alignItems="center" justifyContent={"space-between"} >
                     <Grid item xs={4}>
                         <Typography variant="body1">{student?.dob || "-"}</Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                        <MyInputField type="date" value={formData.dob || ''} onChange={handInputChange("dob")} />
                     </Grid>
                 </Grid>
             </Box>

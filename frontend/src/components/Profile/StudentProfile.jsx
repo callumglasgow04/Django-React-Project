@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGetStudent } from "../../utils/hooks/useGetStudent";
-import { Stack, Card, CardContent, Button } from "@mui/material";
+import { Stack, Paper, Box } from "@mui/material";
 import StudentProfileView from "./StudentProfileView";
 import StudentProfileEdit from "./StudentProfileEdit";
 import StudentProfileHeader from "./StudentProfileHeader";
@@ -14,6 +14,7 @@ const StudentProfile = () => {
         username: student?.user?.username || "",
         first_name: student?.user?.first_name || "",
         last_name: student?.user?.last_name || "",
+        dob: student?.dob || "",
     });
 
     useEffect(() => {
@@ -22,14 +23,13 @@ const StudentProfile = () => {
                 username: student?.user?.username || "",
                 first_name: student?.user?.first_name || "",
                 last_name: student?.user?.last_name || "",
+                dob: student?.dob || "",
             })
         }
     }, [student])
 
     const handleSave = () => {
         console.log('saved: ', formData)
-
-        
         setIsEditing(false)
     }
 
@@ -41,23 +41,48 @@ const StudentProfile = () => {
     }
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", marginTop: 40 }}>
-            <Card sx={{ maxWidth: 600, width: "100%" }}>
-                < StudentProfileHeader isEditing={isEditing} handleEditClick={handleEditClick} handleCancelClick={handleCancelClick} />
-                <CardContent>
-                    <Stack spacing={2}>
+        <Box sx={{
+                backgroundColor: "#f0f0f0",
+                width: "100%",
+                minHeight: "100vh",
+                boxSizing: "border-box",
+                paddingTop: "15px",
+            }}>
+            <Box sx={{
+                    maxWidth: 600,
+                    margin: "0 auto",
+                }}>
+                <Paper sx={{
+                        width: "100%",
+                        borderRadius: 2,
+                        padding: 3,
+                        boxShadow: 3,
+                        height: "auto",
+                    }} >
+                    <StudentProfileHeader
+                        isEditing={isEditing}
+                        handleEditClick={handleEditClick}
+                        handleCancelClick={handleCancelClick}
+                    />
+                    <Stack spacing={2} mt={2}>
                         {!isEditing && <StudentProfileView student={student} />}
-                        {isEditing && <StudentProfileEdit student={student} formData={formData} setFormData={setFormData} />}
-
+                        {isEditing && (
+                            <StudentProfileEdit
+                                student={student}
+                                formData={formData}
+                                setFormData={setFormData}
+                            />
+                        )}
                     </Stack>
-                    {isEditing &&
-                        <Stack direction="row" justifyContent="flex-end" spacing={2} style={{ marginRight: '10px' }}>
-                            <MyButton color='primary' text='Save' onClick={handleSave} />
+                    {isEditing && (
+                        <Stack direction="row" justifyContent="flex-end" spacing={2} mt={2}>
+                            <MyButton color="primary" text="Save" onClick={handleSave} />
                         </Stack>
-                    }
-                </CardContent>
-            </Card>
-        </div>
-    );
+                    )}
+                </Paper>
+            </Box>
+        </Box>
+
+    )
 }
 export default StudentProfile;

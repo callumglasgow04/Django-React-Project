@@ -1,12 +1,13 @@
 import React from "react";
 import { Button } from "@mui/material";
 
-const MyButton = ({color, text, onClick}) => {
+const MyButton = ({color, text, onClick, disabled=false }) => {
     return (
         <Button
             variant="contained"
             color={color}
             onClick={onClick}
+            disabled={disabled}
             sx={{
                 textTransform: 'none',
                 padding: '10px',

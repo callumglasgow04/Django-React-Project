@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api";
+import {
+    Box,
+    Card,
+    CardContent,
+    Typography,
+    Stack,
+    Link
+} from "@mui/material";
+import MyTitle from "../../../components/Core/myTitle";
+import MyTitleMessage from "../../../components/Core/MyTitleMessage";
+import MyButton from "../../../components/Core/MyButton";
+import MyInputField from "../../../components/Core/MyInputField";
 
 
 const StudentForm = () => {
@@ -9,55 +21,106 @@ const StudentForm = () => {
     const [lastName, setLastName] = useState("");
     const [dob, setDob] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
+    const isValidFields = username && firstName && lastName && dob && password;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
         try {
-            const res = await api.post('/api/student/register/', {
-                username,
-                password,
-                first_name: firstName,
-                last_name: lastName,
-                dob,
-            });
-            navigate('/login');
+            if (isValidFields) {
+                const res = await api.post('/api/student/register/', {
+                    username,
+                    password,
+                    first_name: firstName,
+                    last_name: lastName,
+                    dob,
+                });
+                navigate('/login');
+            } else {
+                alert("fill in fields")
+            }
         } catch (error) {
-            alert(error);
-        } finally {
-            setLoading(false);
+            console.error(error);
         }
     }
 
     return (
-        <div className="form-wrapper">
-            <div className="title-wrapper">
-                <h1 className="title">MindSpark</h1>
-                <p className="titleText">Jump start your brain with these games.</p>
-            </div>
-            <form  onSubmit={handleSubmit} className="form-container">
-                <h1>Register as a Student</h1>
-                <input className="form-input" required value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" />
-                <input className="form-input" required type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
-                <input className="form-input" required value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="First Name" />
-                <input className="form-input" required value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Last Name" />
-                <input className="form-input" required type="date" value={dob} onChange={e => setDob(e.target.value)} placeholder="Date of birth" />
+        <Box sx={{
+            minHeight: "100vh",
+            width: "100%",
+            backgroundColor: "#4A90E2",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: 'column',
+        }}
+        >
+            <MyTitle />
+            <MyTitleMessage />
 
-                <button className="form-button" type="submit" disabled={loading}>{loading ? "Registering..." : "Register as Student"}</button>
-                <p className="form-text">
-                    Already have an account? <a href="/login">Login here</a>
-                </p>
-                <p className="form-text">
-                    Register as a teacher? <a href="/teacher/register">Register here</a>
-                </p>
-            </form>
-        </div>
+            <Card sx={{
+                maxWidth: 400,
+                padding: 5,
+                borderRadius: '12px'
+            }} >
+                <Typography align="center" fontWeight='700' letterSpacing='.12rem' >
+                    Login
+                </Typography>
+                <CardContent>
+                    <form>
+                        <Stack spacing='.75rem' >
+                            <MyInputField
+                                label="User Name"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                            <MyInputField
+                                type="password"
+                                label="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <MyInputField
+                                label="First Name"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                            />
+                            <MyInputField
+                                label="Last Name"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                            />
+                            <Box display="flex" alignItems="center" gap={1}>
+                                <Typography minWidth='100px' >
+                                    Date of Birth
+                                </Typography>
+                                <MyInputField
+                                    type="date"
+                                    label=""
+                                    value={dob}
+                                    onChange={(e) => setDob(e.target.value)}
+                                />
+                            </Box>
+                            <MyButton color='primary' text='Login' onClick={handleSubmit} disabled={!isValidFields} />
+                            <Box >
+                                <Typography >
+                                    Already have an accout?
+                                    <Link href="/login" sx={{ marginLeft: '5px', textDecoration: '' }}> Login here </Link>
+                                </Typography>
+                                <Typography >
+                                    Register as a teacher?
+                                    <Link href="/register" sx={{ marginLeft: '5px', textDecoration: '' }} >
+                                        Register here
+                                    </Link>
+                                </Typography>
+                            </Box>
+                        </Stack>
+                    </form>
+                </CardContent>
+            </Card>
+        </Box>
     )
-
-
-
 }
 export default StudentForm;
