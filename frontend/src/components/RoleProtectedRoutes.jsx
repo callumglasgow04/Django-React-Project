@@ -9,7 +9,7 @@ const RoleProtectedRoutes = ({ children, allowedRoles }) => {
     if (error) {
         console.error("Error fetching user info:", error);
     }
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div>Loading... RoleProtectedRoutes</div>;
     if (!user) return <Navigate to="/login" replace />;
 
     if (!allowedRoles.includes(user?.role)) {

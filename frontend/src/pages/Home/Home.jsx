@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react'
 import api from '../../api';
 import { useNavigate } from 'react-router-dom';
+import { useGetUser } from '../../utils/hooks/useGetUser';
 
 function Home() {
     const navigate = useNavigate();
+    const { user } = useGetUser();
+    const role = user?.role;
+
+    console.log("User role:", role);
 
     useEffect(() => {
         const checkRoleandRedirect = async () => {
             try{
-                const res = await api.get('api/student/profile/');
-                const role = res.data.user.role;
                 if (role === 'student') {
                     navigate('/student/dashboard');
                 } else if (role === 'teacher') {
@@ -21,10 +24,10 @@ function Home() {
             }
         }
         checkRoleandRedirect();
-    }, [navigate]);
+    }, [role, navigate]);
 
     return (
-        <div> Loading... </div>
+        <div> Loading... Home </div>
     )
 
 }

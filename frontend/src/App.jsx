@@ -4,12 +4,14 @@ import Home from "./pages/Home/Home"
 import Login from "./pages/Login/Login"
 import RegisterLandingPage from "./pages/RegisterLandingPage/RegisterLandingPage"
 import RegisterStudent from "./pages/register/Student/RegisterStudent"
-import RegisterTeacher from "./pages/register/RegisterTeacher"
+import RegisterTeacher from "./pages/register/Teacher/RegisterTeacher"
 import NotFound from "./pages/NotFound/NotFound"
 import ProtectedRoute from "./components/protectedRoutes"
 import ProtectedLayout from "./components/navbar/ProtectedLayout"
 import StudentDashboard from "./pages/StudentDashboard/StudentDashboard"
+import TeacherDashboard from "./pages/TeacherDashboard/TeacherDashboard"
 import RoleProtectedRoutes from "./components/RoleProtectedRoutes"
+import Profile from "./pages/Profile/Profile"
 
 function Logout() {
   localStorage.clear()
@@ -48,6 +50,11 @@ function App() {
             <Route path="/student/dashboard" element={<StudentDashboard />} />
           </Route>
 
+          <Route element={<RoleProtectedRoutes allowedRoles={['teacher']} />}>
+            <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
+          </Route>
+
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>
